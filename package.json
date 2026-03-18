@@ -12,6 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.3"
+    "@midudev/tailwind-animations": "^1.0.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "6.0.3",
+    "tailwind-animations": "^1.0.1",
+    "tailwindcss": "^4.2.1"
   }
 }

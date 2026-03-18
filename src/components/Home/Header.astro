@@ -1,0 +1,49 @@
+<header>
+    
+    <div class="w-full h-48 flex flex-col items-center justify-center1 pt-10 animate-fade-in-up ">
+        <img src="/public/images/avatar.jpg.jpeg" alt="avatar rooh ayko" class="bg-cover hover:scale-105 transform transition duration-600 ease-in-out rounded-full my-5 w-50 h-50 border-4 border-white">
+            <div  class="text-6xl font-bold text-black pb-2 min-h-18 flex py-5" >
+                <h1 id="typewriter">Rooh Ayko</h1>
+                <span class="terminal-cursor"></span>
+            </div>
+    </div>
+
+    <style>
+
+        .terminal-cursor {
+            width: 0.6em;
+            height: 0.12em;
+            background: currentColor;
+            align-self: flex-end;
+            animation: cursorBlink 1s steps(1) infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+
+    <script>
+        const element = document.getElementById("typewriter");
+        if (element) {
+            const text = element.textContent || "";
+            element.textContent = "";
+            let charIndex = 0;
+            const speed = 150;
+
+            function type() {
+                if (charIndex < text.length) {
+                    element!.textContent += text.charAt(charIndex++);
+                    setTimeout(type, speed);
+                }
+            }
+
+            type();
+        }
+
+    </script>
+    
+</header>
