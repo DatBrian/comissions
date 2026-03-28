@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro"
+import BackButton from "../components/backButton.astro"
+import Animation from "../components/Commissions/animation.astro"
+---
+
+<Layout title="Commissions">
+    <BackButton />
+    <section class="flex flex-col items-center">
+        <h1 class="text-6xl">Commissions</h1>
+        <div class="mx-32 w-full h-full px-36 mt-20">
+            <Animation
+                webm="/videos/diseño6.webm"
+                poster="/images/avatar.jpg.jpeg"
+                client:visible
+                title="Commission title"
+                description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate."
+            />
+        </div>
+    </section>
+</Layout>

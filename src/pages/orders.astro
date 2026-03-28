@@ -1,0 +1,40 @@
+---
+import OrderItem from "../components/Orders/orderItem.astro";
+import Layout from "../layouts/Layout.astro";
+import { getOrders, type Order } from "../lib/sheets";
+import BackButton from "../components/backButton.astro";
+
+const orders:Order[] = await getOrders();
+---
+
+<Layout title="Orders List">
+    <BackButton />
+    <div class="w-full flex justify-center items-center h-56 py-10 animate-fade-in-up">
+        <h1 class="text-6xl">Orders List</h1>
+    </div>
+
+    <div class="list grid grid-cols-2 sm:grid-cols-1 gap-4 animate-fade-in-up">
+        {orders.map(order => (
+            <OrderItem client={order.client} progress={order.progress} state={order.state} />
+        ))}
+    </div>
+</Layout>
+
+<style>
+    .list{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .backButton{
+        background-color: #cce3f6;
+        border: 2px solid #6ca0dc;
+        box-shadow: 2px 2px 0 #88a0c4;
+        transition: all 0.2s ease;
+    }
+
+    .backButton:hover{
+        transform: translateY(2px);
+        box-shadow: 1px 1px #44a0c4;
+    }
+</style>

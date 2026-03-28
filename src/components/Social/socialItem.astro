@@ -1,0 +1,39 @@
+---
+const { image, title, link } = Astro.props;
+---
+
+<div class="socialItem w-50 h-50 rounded-lg cursor-pointer">
+    <a class="w-full h-full" href={link} target="_blank">
+        <div class="info flex flex-col justify-center items-center gap-6 mt-11">
+            <img class="icon w-16 h-16" src={image} alt={title}>
+            <h2>{title}</h2>
+        </div>
+    </a>
+</div>
+
+<style>
+    .socialItem{
+        background-color: #cce3f6;
+        border: 2px solid #6ca0dc;
+        color: #f0f0f0;
+        box-shadow: 3px 3px 0 #88a0c4;
+        transition: all 0.2s ease;
+    }
+
+    .socialItem:hover{
+        transform: translateY(2px);
+        box-shadow: 1px 1px #44a0c4;
+    }
+
+    .socialItem:hover .icon{
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+    }
+
+    .info{
+    }
+
+    a h2{
+        color: black;
+    }
+</style>

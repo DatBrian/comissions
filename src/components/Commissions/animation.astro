@@ -1,0 +1,73 @@
+---
+const{
+    webm,
+    poster ="",
+    title= "",
+    description =""
+} = Astro.props;
+---
+
+<div class="animationCard flex items-center p-2 gap-3 w-2/5 h-72 rounded-2xl mb-4 box-border">
+    <div class="videoContainer w-2/5 h-full overflow-hidden">
+        <video class={`animation w-full h-full`} muted loop playsinline preload="none" poster={poster}>
+            {webm && <source data-src={webm} type="video/webm" />}
+        </video>
+    </div>
+    <div class="textContainer flex flex-col gap-8">
+        <h3 class="text-3xl">{title}</h3>
+        <p class="">{description}</p>
+    </div>
+</div>
+
+<style>
+    .animationCard{
+        background-color: #c2b280;
+        border: 4px solid #000;
+    }
+
+    .videoContainer{
+        border: 2px solid #000;
+        image-rendering: pixelated;
+    }
+
+    .videoContainer video{
+        object-fit: cover;
+        image-rendering: pixelated;
+    }
+</style>
+
+<script>
+  const currentScript = document.currentScript;
+  const island = currentScript ? currentScript.closest("astro-island") : null;
+
+  const videos = island 
+    ? island.querySelectorAll<HTMLVideoElement>(".animation")
+    : document.querySelectorAll<HTMLVideoElement>(".animation");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target as HTMLVideoElement;
+
+      if (entry.isIntersecting) {
+        if (!video.dataset.loaded) {
+          const sources = video.querySelectorAll("source");
+
+          sources.forEach(source => {
+            if (source.dataset.src) {
+              source.src = source.dataset.src;
+            }
+          });
+
+          video.load();
+          video.dataset.loaded = "true";
+        }
+
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  videos.forEach(video => observer.observe(video));
+</script>
